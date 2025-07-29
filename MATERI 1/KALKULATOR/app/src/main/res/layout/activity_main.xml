@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView_title"
+        android:layout_width="0dp"
+        android:layout_height="43dp"
+        android:background="@color/design_default_color_primary_dark"
+        android:gravity="center"
+        android:text="@string/calculator_title"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView_result"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:gravity="center"
+        android:text="@string/default_result"
+        android:textSize="100sp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHeight_percent="0.25"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_title" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/hint_first_number"
+        android:inputType="numberDecimal"
+        android:autofillHints="number"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/darker_gray"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNumberDecimal2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView_result" />
+
+    <EditText
+        android:id="@+id/editTextNumberDecimal2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:ems="10"
+        android:hint="@string/hint_second_number"
+        android:inputType="numberDecimal"
+        android:autofillHints="number"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/darker_gray"
+        android:minHeight="48dp"
+        app:layout_constraintBottom_toTopOf="@+id/button_add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal1" />
+
+    <Button
+        android:id="@+id/button_add"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/button_add"
+        app:layout_constraintBottom_toTopOf="@+id/button_subtract"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextNumberDecimal2" />
+
+    <Button
+        android:id="@+id/button_subtract"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/button_subtract"
+        app:layout_constraintBottom_toTopOf="@+id/button_multiply"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_add" />
+
+    <Button
+        android:id="@+id/button_multiply"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/button_multiply"
+        app:layout_constraintBottom_toTopOf="@+id/button_divide"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_subtract" />
+
+    <Button
+        android:id="@+id/button_divide"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/button_divide"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/button_multiply" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

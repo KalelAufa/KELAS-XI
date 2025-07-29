@@ -5,6 +5,21 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".pembelian">
+    tools:context=".PembelianActivity">
+
+    <TextView
+        android:id="@+id/textViewPembelian"
+        android:layout_width="0dp"
+        android:layout_height="59dp"
+        android:background="@color/design_default_color_primary_dark"
+        android:gravity="center_vertical"
+        android:padding="10sp"
+        android:text="Aktivitas Pembelian"
+        android:textColor="@color/white"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -5,6 +5,35 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".penjualan">
+    tools:context=".PenjualanActivity">
+
+    <TextView
+        android:id="@+id/textViewHeaderPenjualan"
+        android:layout_width="0dp"
+        android:layout_height="59dp"
+        android:background="@color/design_default_color_primary_dark"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
+        android:text="Manajemen Penjualan"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewPenjualanContent"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="24dp"
+        android:text="Di sini Anda dapat mengelola transaksi penjualan, menambah, mengedit, atau menghapus data penjualan."
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeaderPenjualan" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,13 +7,78 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <ScrollView
+        android:layout_width="408dp"
+        android:layout_height="150dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="1dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <EditText
+                android:id="@+id/editTextText5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Nama" />
+
+            <EditText
+                android:id="@+id/editTextText4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Tempat Lahir" />
+
+            <EditText
+                android:id="@+id/editTextText3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Alamat" />
+
+            <EditText
+                android:id="@+id/editTextText2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="No. telp" />
+
+            <EditText
+                android:id="@+id/editTextText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="20sp"
+                android:ems="10"
+                android:inputType="text"
+                android:text="Orang Tua" />
+        </LinearLayout>
+    </ScrollView>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="414dp"
+        android:layout_height="49dp"
+        android:background="@color/design_default_color_primary_dark"
+        android:gravity="center_vertical"
+        android:textColor="@color/white"
+        android:padding="10sp"
+        android:textStyle="bold"
+        android:textSize="15sp"
+        android:text="Scroll View"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
