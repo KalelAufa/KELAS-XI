@@ -1,0 +1,102 @@
+<resources>
+    <string name="app_name">SQLite Database Manager</string>
+    
+    <!-- Activity Titles -->
+    <string name="main_activity_title">Database Manager</string>
+    <string name="debug_activity_title">Debug Preferences</string>
+    
+    <!-- Button Labels -->
+    <string name="btn_simpan">Simpan</string>
+    <string name="btn_baca">Baca Data</string>
+    <string name="btn_batal">Batal</string>
+    <string name="btn_simpan_preferences">Simpan Preferences</string>
+    <string name="btn_tampil_preferences">Tampil Preferences</string>
+    <string name="btn_clear_preferences">Clear Preferences</string>
+    <string name="btn_debug_demo">Debug Preferences Demo</string>
+    <string name="btn_update">Update</string>
+    <string name="btn_delete">Hapus</string>
+    <string name="btn_edit">Edit</string>
+    <string name="btn_cancel">Batal</string>
+    <string name="btn_ok">OK</string>
+    <string name="btn_yes">Ya</string>
+    <string name="btn_no">Tidak</string>
+    
+    <!-- Input Hints -->
+    <string name="hint_nama_barang">Masukkan Nama Barang</string>
+    <string name="hint_stok_barang">Masukkan Stok</string>
+    <string name="hint_harga_barang">Masukkan Harga</string>
+    <string name="hint_search">Cari barang...</string>
+    
+    <!-- Labels -->
+    <string name="label_nama_barang">Nama Barang</string>
+    <string name="label_stok">Stok</string>
+    <string name="label_harga">Harga</string>
+    <string name="label_total_items">Total Items</string>
+    <string name="label_stock_format">Stock: %d</string>
+    <string name="label_price_format">Rp %s</string>
+    
+    <!-- Messages -->
+    <string name="msg_data_saved">Data berhasil disimpan</string>
+    <string name="msg_data_updated">Data berhasil diupdate</string>
+    <string name="msg_data_deleted">Data berhasil dihapus</string>
+    <string name="msg_data_empty">Data kosong</string>
+    <string name="msg_invalid_input">Data tidak valid</string>
+    <string name="msg_database_error">Error database</string>
+    <string name="msg_no_data_found">Tidak ada data ditemukan</string>
+    <string name="msg_search_no_results">Tidak ada hasil pencarian</string>
+    
+    <!-- Dialog Titles -->
+    <string name="dialog_confirm_delete">Konfirmasi Hapus</string>
+    <string name="dialog_confirm_clear">Konfirmasi Clear</string>
+    <string name="dialog_error">Error</string>
+    <string name="dialog_warning">Peringatan</string>
+    <string name="dialog_info">Informasi</string>
+    <string name="dialog_update_item">Update Data Barang</string>
+    <string name="dialog_item_details">Detail Barang</string>
+    
+    <!-- Dialog Messages -->
+    <string name="dialog_msg_delete_confirm">Yakin akan menghapus "%s"?</string>
+    <string name="dialog_msg_clear_preferences">Yakin akan menghapus semua data preferences?</string>
+    <string name="dialog_msg_exit_update_mode">Keluar dari mode update? Perubahan yang belum disimpan akan hilang.</string>
+    
+    <!-- Empty State -->
+    <string name="empty_state_title">Belum ada data</string>
+    <string name="empty_state_message">Tambahkan item pertama Anda dengan mengisi form di atas</string>
+    <string name="empty_search_title">Tidak ada hasil</string>
+    <string name="empty_search_message">Coba kata kunci lain</string>
+    
+    <!-- Menu Items -->
+    <string name="menu_edit">Edit</string>
+    <string name="menu_delete">Hapus</string>
+    <string name="menu_edit_form">Edit di Form</string>
+    <string name="menu_quick_edit">Quick Edit</string>
+    
+    <!-- Status Messages -->
+    <string name="status_insert_mode">📝 Insert Mode</string>
+    <string name="status_update_mode">✏️ Update Mode - %s</string>
+    <string name="status_from_preferences">💾 From Preferences</string>
+    <string name="status_search_mode">🔍 Search Mode</string>
+    
+    <!-- Format Strings -->
+    <string name="format_total_items">Total: %d items</string>
+    <string name="format_search_results">Found %d items</string>
+    <string name="format_saved_time">Saved: %s</string>
+    <string name="format_stock_warning">Stock rendah: %d</string>
+    <string name="format_out_of_stock">Stock habis</string>
+    
+    <!-- Error Messages -->
+    <string name="error_database_init">Gagal menginisialisasi database</string>
+    <string name="error_invalid_stock">Stok harus berupa angka positif</string>
+    <string name="error_invalid_price">Harga harus berupa angka positif</string>
+    <string name="error_name_too_long">Nama barang terlalu panjang (max 50 karakter)</string>
+    <string name="error_name_empty">Nama barang tidak boleh kosong</string>
+    <string name="error_loading_data">Error loading data</string>
+    <string name="error_saving_data">Error saving data</string>
+    
+    <!-- Content Descriptions -->
+    <string name="cd_product_icon">Product Icon</string>
+    <string name="cd_menu_button">Menu Button</string>
+    <string name="cd_search_button">Search Button</string>
+    <string name="cd_clear_button">Clear Button</string>
+    <string name="cd_database_icon">Database Icon</string>
+</resources>

@@ -1,0 +1,1077 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background_color"
+    tools:context=".MainActivity">
+
+    <!-- App Bar Layout -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            app:contentScrim="@color/primary_color"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+            <!-- Background Gradient -->
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/gradient_header"
+                app:layout_collapseMode="parallax" />
+
+            <!-- Header Content -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="24dp"
+                app:layout_collapseMode="parallax">
+
+                <ImageView
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:src="@drawable/ic_database"
+                    android:layout_marginBottom="16dp"
+                    app:tint="@android:color/white"
+                    android:contentDescription="Database Icon" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="SQLite Inventory"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:gravity="center" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Modern Product Management System"
+                    android:textSize="16sp"
+                    android:textColor="@color/white_alpha_80"
+                    android:gravity="center"
+                    android:layout_marginTop="8dp" />
+
+            </LinearLayout>
+
+            <!-- Toolbar -->
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:title=""
+                app:titleTextColor="@android:color/white" />
+
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Stats Card with Enhanced Design -->
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="8dp"
+                app:cardBackgroundColor="@android:color/white"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Header with Refresh Indicator -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="16dp"
+                        android:gravity="center_vertical"
+                        android:background="@color/primary_light_alpha">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_analytics"
+                            android:layout_marginEnd="8dp"
+                            app:tint="@color/primary_color"
+                            android:contentDescription="Analytics Icon" />
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Inventory Analytics"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/primary_color" />
+
+                        <TextView
+                            android:id="@+id/tvLastUpdate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Updated now"
+                            android:textSize="12sp"
+                            android:textColor="@color/text_disabled"
+                            android:background="@drawable/timestamp_chip"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp" />
+
+                    </LinearLayout>
+
+                    <!-- Stats Grid -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:padding="20dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_marginBottom="8dp"
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp"
+                                app:cardBackgroundColor="@color/primary_light_alpha">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_inventory"
+                                    app:tint="@color/primary_color"
+                                    android:contentDescription="Total Products Icon" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:id="@+id/tvTotalItems"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="28sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/primary_color" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="center"
+                                android:text="Products"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/divider_color"
+                            android:layout_marginHorizontal="16dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_marginBottom="8dp"
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp"
+                                app:cardBackgroundColor="@color/warning_light_alpha">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_warning"
+                                    app:tint="@color/warning_color"
+                                    android:contentDescription="Low Stock Icon" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:id="@+id/tvLowStockCount"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textSize="28sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/warning_color" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Low Stock"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                        <View
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/divider_color"
+                            android:layout_marginHorizontal="16dp" />
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="vertical"
+                            android:gravity="center">
+
+                            <com.google.android.material.card.MaterialCardView
+                                android:layout_width="48dp"
+                                android:layout_height="48dp"
+                                android:layout_marginBottom="8dp"
+                                app:cardCornerRadius="24dp"
+                                app:cardElevation="0dp"
+                                app:cardBackgroundColor="@color/success_light_alpha">
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/ic_attach_money"
+                                    app:tint="@color/success_color"
+                                    android:contentDescription="Total Value Icon" />
+
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <TextView
+                                android:id="@+id/tvTotalValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Rp 0"
+                                android:textSize="18sp"
+                                android:textStyle="bold"
+                                android:textColor="@color/success_color"
+                                android:maxLines="1"
+                                android:ellipsize="end" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Total Value"
+                                android:textSize="12sp"
+                                android:textColor="@color/text_secondary" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+    <!-- Enhanced Search & Filter Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="20dp"
+                android:gravity="center_vertical"
+                android:background="@color/info_light_alpha">
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_search"
+                    android:layout_marginEnd="12dp"
+                    app:tint="@color/info_color"
+                    android:contentDescription="Search Icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Search &amp; Filter Products"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/info_color" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnAdvancedFilter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:text="Advanced"
+                    android:textSize="12sp"
+                    android:textColor="@color/info_color"
+                    app:cornerRadius="16dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/info_color"
+                    android:minWidth="0dp"
+                    style="@style/Widget.Material3.Button.OutlinedButton" />
+
+            </LinearLayout>
+
+            <!-- Content Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- Enhanced Search Input -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    app:boxStrokeColor="@color/info_color"
+                    app:hintTextColor="@color/info_color"
+                    app:startIconDrawable="@drawable/ic_search"
+                    app:startIconTint="@color/info_color"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/text_disabled"
+                    app:helperText="Search by product name or category"
+                    app:helperTextTextColor="@color/text_disabled"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etSearch"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Type product name here..."
+                        android:inputType="text"
+                        android:textSize="16sp"
+                        android:padding="16dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Quick Filter Chips -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quick Filters"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="12dp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    app:chipSpacing="8dp"
+                    app:chipSpacingHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All Products"
+                        android:checkable="true"
+                        android:checked="true"
+                        app:chipBackgroundColor="@color/primary_color"
+                        app:chipStrokeWidth="0dp"
+                        android:textColor="@android:color/white"
+                        app:chipIcon="@drawable/ic_list"
+                        app:chipIconTint="@android:color/white"
+                        android:onClick="showAllItems"
+                        style="@style/Widget.Material3.Chip.Filter" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipLowStock"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Low Stock"
+                        android:checkable="true"
+                        app:chipBackgroundColor="@color/warning_light_alpha"
+                        app:chipStrokeWidth="1dp"
+                        app:chipStrokeColor="@color/warning_color"
+                        android:textColor="@color/warning_color"
+                        app:chipIcon="@drawable/ic_warning"
+                        app:chipIconTint="@color/warning_color"
+                        android:onClick="filterLowStock"
+                        style="@style/Widget.Material3.Chip.Filter" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipExpensive"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Premium"
+                        android:checkable="true"
+                        app:chipBackgroundColor="@color/success_light_alpha"
+                        app:chipStrokeWidth="1dp"
+                        app:chipStrokeColor="@color/success_color"
+                        android:textColor="@color/success_color"
+                        app:chipIcon="@drawable/ic_trending_up"
+                        app:chipIconTint="@color/success_color"
+                        android:onClick="filterExpensive"
+                        style="@style/Widget.Material3.Chip.Filter" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+                <!-- Action Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_weight="2"
+                        android:text="SEARCH NOW"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@color/info_color"
+                        android:layout_marginEnd="8dp"
+                        app:cornerRadius="26dp"
+                        app:icon="@drawable/ic_search"
+                        app:iconGravity="textStart"
+                        android:elevation="2dp"
+                        android:onClick="searchItems"
+                        style="@style/Widget.Material3.Button" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnClearSearch"
+                        android:layout_width="0dp"
+                        android:layout_height="52dp"
+                        android:layout_weight="1"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginStart="8dp"
+                        app:cornerRadius="26dp"
+                        app:icon="@drawable/ic_clear"
+                        app:iconGravity="textStart"
+                        android:onClick="showAllItems"
+                        style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Premium Data Entry Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardDataEntry"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="24dp"
+        app:cardElevation="8dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Premium Header Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="24dp"
+                android:gravity="center_vertical"
+                android:background="@color/primary_light_alpha">
+
+                <LinearLayout
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@drawable/circle_primary"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/ivModeIcon"
+                        android:layout_width="28dp"
+                        android:layout_height="28dp"
+                        android:src="@drawable/ic_add"
+                        app:tint="@android:color/white"
+                        android:contentDescription="Mode Icon" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvPilihan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add New Product"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/primary_color" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fill all required fields to continue"
+                        android:textSize="14sp"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginTop="4dp" />
+
+                </LinearLayout>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnClearForm"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="RESET"
+                    android:textSize="12sp"
+                    android:textColor="@color/primary_color"
+                    app:cornerRadius="20dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/primary_color"
+                    app:icon="@drawable/ic_refresh"
+                    app:iconSize="16dp"
+                    android:minWidth="0dp"
+                    android:onClick="batalData"
+                    style="@style/Widget.Material3.Button.OutlinedButton" />
+
+            </LinearLayout>
+
+            <!-- Enhanced Form Content -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="24dp">
+
+                <!-- Form Progress Indicator -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="24dp"
+                    android:gravity="center_vertical">
+
+                    <View
+                        android:id="@+id/progressStep1"
+                        android:layout_width="0dp"
+                        android:layout_height="4dp"
+                        android:layout_weight="1"
+                        android:background="@color/primary_color"
+                        android:layout_marginEnd="4dp" />
+
+                    <View
+                        android:id="@+id/progressStep2"
+                        android:layout_width="0dp"
+                        android:layout_height="4dp"
+                        android:layout_weight="1"
+                        android:background="@color/primary_light_alpha"
+                        android:layout_marginHorizontal="4dp" />
+
+                    <View
+                        android:id="@+id/progressStep3"
+                        android:layout_width="0dp"
+                        android:layout_height="4dp"
+                        android:layout_weight="1"
+                        android:background="@color/primary_light_alpha"
+                        android:layout_marginStart="4dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Step 1/3"
+                        android:textSize="12sp"
+                        android:textColor="@color/text_disabled"
+                        android:layout_marginStart="12dp" />
+
+                </LinearLayout>
+
+                <!-- Product Name Input -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="20dp"
+                    app:boxStrokeColor="@color/primary_color"
+                    app:hintTextColor="@color/primary_color"
+                    app:startIconDrawable="@drawable/ic_shopping_cart"
+                    app:startIconTint="@color/primary_color"
+                    app:endIconMode="clear_text"
+                    app:endIconTint="@color/text_disabled"
+                    app:helperText="Enter unique product name (3-50 characters)"
+                    app:helperTextTextColor="@color/text_disabled"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="50"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/etBarang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Product Name *"
+                        android:inputType="textCapWords"
+                        android:maxLength="50"
+                        android:textSize="16sp"
+                        android:padding="16dp" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Price and Stock Row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginBottom="20dp">
+
+                    <!-- Stock Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="12dp"
+                        app:boxStrokeColor="@color/info_color"
+                        app:hintTextColor="@color/info_color"
+                        app:startIconDrawable="@drawable/ic_inventory"
+                        app:startIconTint="@color/info_color"
+                        app:suffixText=" pcs"
+                        app:suffixTextColor="@color/info_color"
+                        app:helperText="Quantity available"
+                        app:helperTextTextColor="@color/text_disabled"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etStok"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Stock *"
+                            android:inputType="number"
+                            android:textSize="16sp"
+                            android:padding="16dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <!-- Price Input -->
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="12dp"
+                        app:boxStrokeColor="@color/success_color"
+                        app:hintTextColor="@color/success_color"
+                        app:startIconDrawable="@drawable/ic_attach_money"
+                        app:startIconTint="@color/success_color"
+                        app:prefixText="Rp "
+                        app:prefixTextColor="@color/success_color"
+                        app:helperText="Price in IDR"
+                        app:helperTextTextColor="@color/text_disabled"
+                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/etHarga"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Price *"
+                            android:inputType="numberDecimal"
+                            android:textSize="16sp"
+                            android:padding="16dp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </LinearLayout>
+
+                <!-- Category Input with Dropdown -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="24dp"
+                    app:boxStrokeColor="@color/warning_color"
+                    app:hintTextColor="@color/warning_color"
+                    app:startIconDrawable="@drawable/ic_category"
+                    app:startIconTint="@color/warning_color"
+                    app:endIconMode="dropdown_menu"
+                    app:endIconTint="@color/warning_color"
+                    app:helperText="Select or enter product category"
+                    app:helperTextTextColor="@color/text_disabled"
+                    style="@style/Widget.Material3.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+
+                    <AutoCompleteTextView
+                        android:id="@+id/etKategori"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Category"
+                        android:inputType="textCapWords"
+                        android:textSize="16sp"
+                        android:padding="16dp"
+                        android:focusable="false" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <!-- Enhanced Action Buttons -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="16dp">
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnSimpan"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="2"
+                        android:text="SAVE PRODUCT"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@color/primary_color"
+                        android:layout_marginEnd="12dp"
+                        app:cornerRadius="28dp"
+                        app:icon="@drawable/ic_save"
+                        app:iconGravity="textStart"
+                        android:elevation="4dp"
+                        android:onClick="simpanData"
+                        style="@style/Widget.Material3.Button" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnUpdate"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:text="UPDATE"
+                        android:textColor="@color/warning_color"
+                        android:layout_marginHorizontal="6dp"
+                        app:cornerRadius="28dp"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="@color/warning_color"
+                        app:icon="@drawable/ic_edit"
+                        app:iconGravity="textStart"
+                        android:visibility="gone"
+                        android:onClick="updateData"
+                        style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/btnDelete"
+                        android:layout_width="0dp"
+                        android:layout_height="56dp"
+                        android:layout_weight="1"
+                        android:text="DELETE"
+                        android:textColor="@color/error_color"
+                        android:layout_marginStart="12dp"
+                        app:cornerRadius="28dp"
+                        app:strokeWidth="2dp"
+                        app:strokeColor="@color/error_color"
+                        app:icon="@drawable/ic_delete"
+                        app:iconGravity="textStart"
+                        android:visibility="gone"
+                        android:onClick="hapusData"
+                        style="@style/Widget.Material3.Button.OutlinedButton" />
+
+                </LinearLayout>
+
+                <!-- Quick Actions & Validation -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Quick Actions"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="12dp" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:chipSpacing="8dp"
+                    app:chipSpacingHorizontal="12dp">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipSampleData"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fill Sample Data"
+                        android:checkable="false"
+                        app:chipBackgroundColor="@color/info_light_alpha"
+                        app:chipStrokeWidth="0dp"
+                        android:textColor="@color/info_color"
+                        app:chipIcon="@drawable/ic_auto_fix"
+                        app:chipIconTint="@color/info_color"
+                        android:onClick="fillSampleData"
+                        style="@style/Widget.Material3.Chip.Assist" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipValidate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Validate Form"
+                        android:checkable="false"
+                        app:chipBackgroundColor="@color/success_light_alpha"
+                        app:chipStrokeWidth="0dp"
+                        android:textColor="@color/success_color"
+                        app:chipIcon="@drawable/ic_check"
+                        app:chipIconTint="@color/success_color"
+                        android:onClick="validateForm"
+                        style="@style/Widget.Material3.Chip.Assist" />
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/chipClearAll"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Clear All"
+                        android:checkable="false"
+                        app:chipBackgroundColor="@color/error_light_alpha"
+                        app:chipStrokeWidth="0dp"
+                        android:textColor="@color/error_color"
+                        app:chipIcon="@drawable/ic_clear"
+                        app:chipIconTint="@color/error_color"
+                        android:onClick="batalData"
+                        style="@style/Widget.Material3.Chip.Assist" />
+
+                </com.google.android.material.chip.ChipGroup>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- Quick Actions -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Debug Demo"
+            android:textColor="@android:color/white"
+            android:backgroundTint="@color/debug_color"
+            android:layout_marginEnd="8dp"
+            app:cornerRadius="24dp"
+            app:icon="@drawable/ic_bug_report"
+            app:iconSize="18dp"
+            android:onClick="openDebugPreferences"
+            style="@style/Widget.Material3.Button" />
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="Add Sample"
+            android:textColor="@color/info_color"
+            android:layout_marginStart="8dp"
+            app:cornerRadius="24dp"
+            app:icon="@drawable/ic_download"
+            app:iconSize="18dp"
+            android:onClick="addSampleData"
+            style="@style/Widget.Material3.Button.OutlinedButton" />
+
+    </LinearLayout>
+
+    <!-- Data Display Card -->
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@android:color/white">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Header Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:padding="20dp"
+                android:background="@color/surface_color">
+
+                <ImageView
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:src="@drawable/ic_list"
+                    android:layout_marginEnd="12dp"
+                    app:tint="@color/primary_color"
+                    android:contentDescription="List Icon" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Product Database"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/text_primary" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:gravity="center"
+                    android:text="Test DB"
+                    android:textSize="12sp"
+                    android:textColor="@color/debug_color"
+                    app:cornerRadius="16dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/debug_color"
+                    android:minWidth="0dp"
+                    android:onClick="testDatabase"
+                    style="@style/Widget.Material3.Button.OutlinedButton" />
+
+            </LinearLayout>
+
+            <!-- Content Area -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <!-- SwipeRefreshLayout for pull-to-refresh functionality -->
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/swipeRefreshLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- RecyclerView for displaying data -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="300dp"
+                        android:maxHeight="600dp"
+                        android:background="@color/background_color"
+                        android:padding="8dp"
+                        android:clipToPadding="false"
+                        android:scrollbars="vertical"
+                        android:scrollbarStyle="outsideOverlay"
+                        android:nestedScrollingEnabled="false"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+                <!-- Enhanced Empty State -->
+                <LinearLayout
+                    android:id="@+id/tvEmptyState"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:background="@color/background_color"
+                    android:padding="32dp">
+
+                    <ImageView
+                        android:layout_width="96dp"
+                        android:layout_height="96dp"
+                        android:src="@drawable/ic_empty_box"
+                        android:layout_marginBottom="24dp"
+                        app:tint="@color/text_disabled"
+                        android:contentDescription="Empty State" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="No Products Found"
+                        android:textSize="22sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/text_secondary"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Start by adding your first product using the form above"
+                        android:textSize="16sp"
+                        android:textColor="@color/text_disabled"
+                        android:gravity="center"
+                        android:layout_marginBottom="24dp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="48dp"
+                        android:text="Add Sample Data"
+                        android:textColor="@android:color/white"
+                        android:backgroundTint="@color/primary_color"
+                        app:cornerRadius="24dp"
+                        app:icon="@drawable/ic_add"
+                        app:iconGravity="textStart"
+                        android:onClick="addSampleData"
+                        style="@style/Widget.Material3.Button" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- Floating Action Button for Quick Add -->
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/fabQuickAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:text="Quick Add"
+        android:textColor="@android:color/white"
+        app:backgroundTint="@color/success_color"
+        app:icon="@drawable/ic_add"
+        app:iconTint="@android:color/white"
+        android:onClick="scrollToForm" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
