@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <!-- Background Circle -->
+  <circle cx="100" cy="100" r="95" fill="#ec4899" opacity="0.1"/>
+
+  <!-- Outer Ring -->
+  <circle cx="100" cy="100" r="90" fill="none" stroke="#ec4899" stroke-width="3"/>
+
+  <!-- Inner Circle -->
+  <circle cx="100" cy="100" r="75" fill="#0a0a0a" stroke="#a855f7" stroke-width="2"/>
+
+  <!-- School Building Icon -->
+  <g transform="translate(100, 100)">
+    <!-- Main Building -->
+    <rect x="-35" y="-15" width="70" height="40" fill="#ec4899" rx="3"/>
+
+    <!-- Roof -->
+    <polygon points="-45,-15 0,-35 45,-15" fill="#a855f7"/>
+
+    <!-- Door -->
+    <rect x="-10" y="5" width="20" height="20" fill="#0a0a0a" rx="2"/>
+
+    <!-- Windows -->
+    <rect x="-28" y="-5" width="10" height="10" fill="#ffffff" opacity="0.9" rx="1"/>
+    <rect x="-28" y="10" width="10" height="10" fill="#ffffff" opacity="0.9" rx="1"/>
+    <rect x="18" y="-5" width="10" height="10" fill="#ffffff" opacity="0.9" rx="1"/>
+    <rect x="18" y="10" width="10" height="10" fill="#ffffff" opacity="0.9" rx="1"/>
+
+    <!-- Flag -->
+    <line x1="0" y1="-35" x2="0" y2="-50" stroke="#f97316" stroke-width="2"/>
+    <polygon points="0,-50 12,-47 0,-44" fill="#f97316"/>
+  </g>
+
+  <!-- Text SMK -->
+  <text x="100" y="165" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#ec4899">SMK</text>
+  <text x="100" y="185" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" font-weight="600" fill="#a855f7">NEGERI 2</text>
+</svg>

@@ -1,5 +1,4 @@
 package com.kelasxi.sqlitedatabase;
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
     
     // Database and UI components
     private Database db;
-    private EditText etBarang, etStok, etHarga, etSearch;
+    private EditText etBarang, etStok, etHarga, etSearch, etKategori;
     private TextView tvPilihan, tvEmptyState, tvTotalItems, tvLowStockCount, tvTotalValue;
     private ImageView ivModeIcon;
     private RecyclerView rcvBarang;
@@ -53,6 +52,10 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
     private Toolbar toolbar;
     private BarangAdapter adapter;
     private List<Barang> dataBarang;
+    
+    // Loading and Error UI Components
+    private View loadingLayout, errorLayout, mainContentLayout;
+    private com.google.android.material.button.MaterialButton btnRetry;
     
     // SharedPreferences
     private SharedPreferences sharedPreferences;
@@ -72,25 +75,98 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
             Log.d(TAG, "MainActivity onCreate started");
             setContentView(R.layout.activity_main);
             
-            // Initialize components in proper order
-            initializeDatabase();
-            initializeSharedPreferences();
-            initializeViews();
-            initializeRecyclerView();
-            setupSearchFunctionality();
+            // Initialize loading and error states first
+            initializeStateViews();
+            showLoadingState();
             
-            // Load initial data
-            loadInitialData();
-            
-            // Load any saved preferences
-            loadLastPreferences();
-            
-            Log.d(TAG, "MainActivity onCreate completed successfully");
+            // Initialize components in proper order with delay for smooth loading
+            new android.os.Handler().postDelayed(() -> {
+                try {
+                    initializeDatabase();
+                    initializeSharedPreferences();
+                    initializeViews();
+                    initializeRecyclerView();
+                    setupSearchFunctionality();
+                    
+                    // Load initial data
+                    loadInitialData();
+                    
+                    // Load any saved preferences
+                    loadLastPreferences();
+                    
+                    // Show main content
+                    showMainContent();
+                    
+                    Log.d(TAG, "MainActivity onCreate completed successfully");
+                    
+                } catch (Exception e) {
+                    Log.e(TAG, "Error during initialization", e);
+                    showErrorState(e.getMessage());
+                }
+            }, 1000); // Small delay for smooth transition
             
         } catch (Exception e) {
             Log.e(TAG, "Critical error in onCreate", e);
-            showErrorDialog("Initialization Error", "Failed to initialize the application: " + e.getMessage());
+            showErrorState("Failed to initialize the application: " + e.getMessage());
         }
+    }
+    
+    private void initializeStateViews() {
+        loadingLayout = findViewById(R.id.loadingLayout);
+        errorLayout = findViewById(R.id.errorLayout);
+        mainContentLayout = findViewById(R.id.mainContentLayout);
+        btnRetry = findViewById(R.id.btnRetry);
+        
+        if (btnRetry != null) {
+            btnRetry.setOnClickListener(v -> retryInitialization());
+        }
+    }
+    
+    private void showLoadingState() {
+        if (loadingLayout != null) loadingLayout.setVisibility(View.VISIBLE);
+        if (errorLayout != null) errorLayout.setVisibility(View.GONE);
+        if (mainContentLayout != null) mainContentLayout.setVisibility(View.GONE);
+    }
+    
+    private void showErrorState(String errorMessage) {
+        if (loadingLayout != null) loadingLayout.setVisibility(View.GONE);
+        if (errorLayout != null) errorLayout.setVisibility(View.VISIBLE);
+        if (mainContentLayout != null) mainContentLayout.setVisibility(View.GONE);
+        
+        // Update error message if text view exists
+        TextView tvErrorMessage = findViewById(R.id.tvErrorMessage);
+        if (tvErrorMessage != null) {
+            tvErrorMessage.setText(errorMessage);
+        }
+    }
+    
+    private void showMainContent() {
+        if (loadingLayout != null) loadingLayout.setVisibility(View.GONE);
+        if (errorLayout != null) errorLayout.setVisibility(View.GONE);
+        if (mainContentLayout != null) mainContentLayout.setVisibility(View.VISIBLE);
+    }
+    
+    private void retryInitialization() {
+        showLoadingState();
+        
+        // Clear any previous errors and retry
+        new android.os.Handler().postDelayed(() -> {
+            try {
+                if (db != null) {
+                    db.close();
+                }
+                
+                initializeDatabase();
+                loadInitialData();
+                showMainContent();
+                
+                Toast.makeText(this, "✅ Application initialized successfully", Toast.LENGTH_SHORT).show();
+                
+            } catch (Exception e) {
+                Log.e(TAG, "Retry failed", e);
+                showErrorState("Retry failed: " + e.getMessage());
+            }
+        }, 800);
     }
     
     private void initializeDatabase() {
@@ -126,6 +202,7 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
             etBarang = findViewById(R.id.etBarang);
             etStok = findViewById(R.id.etStok);
             etHarga = findViewById(R.id.etHarga);
+            etKategori = findViewById(R.id.etKategori);
             etSearch = findViewById(R.id.etSearch);
             
             // Status and info elements
@@ -285,6 +362,9 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
             } else {
                 performSearch(currentSearchQuery);
             }
+            
+            // Update statistics after refreshing data
+            updateStatistics();
             
             if (swipeRefreshLayout != null) {
                 swipeRefreshLayout.setRefreshing(false);
@@ -470,10 +550,11 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
             String barang = etBarang.getText().toString().trim();
             String stokStr = etStok.getText().toString().trim();
             String hargaStr = etHarga.getText().toString().trim();
+            String kategori = etKategori != null ? etKategori.getText().toString().trim() : "";
             
             // Validation
             if (barang.isEmpty() || stokStr.isEmpty() || hargaStr.isEmpty()) {
-                showToast("Semua field harus diisi!");
+                showToast("⚠️ Nama, stok, dan harga harus diisi!");
                 return;
             }
             
@@ -482,7 +563,7 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
                 double harga = Double.parseDouble(hargaStr);
                 
                 if (stok < 0 || harga < 0) {
-                    showToast("Stok dan harga tidak boleh negatif!");
+                    showToast("⚠️ Stok dan harga tidak boleh negatif!");
                     return;
                 }
                 
@@ -490,18 +571,18 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
                     // Update existing item
                     boolean result = db.updateBarang(updateId, barang, stok, harga);
                     if (result) {
-                        showToast("Data berhasil diupdate!");
+                        showToast("✅ Data berhasil diupdate!");
                         exitUpdateMode();
                     } else {
-                        showToast("Gagal mengupdate data!");
+                        showToast("❌ Gagal mengupdate data!");
                     }
                 } else {
                     // Insert new item
                     long result = db.insertBarang(barang, stok, harga);
                     if (result != -1) {
-                        showToast("Data berhasil disimpan!");
+                        showToast("✅ Data berhasil disimpan!");
                     } else {
-                        showToast("Gagal menyimpan data!");
+                        showToast("❌ Gagal menyimpan data!");
                     }
                 }
                 
@@ -509,12 +590,12 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
                 refreshData();
                 
             } catch (NumberFormatException e) {
-                showToast("Format angka tidak valid!");
+                showToast("⚠️ Format angka tidak valid! Pastikan stok dan harga berupa angka.");
             }
             
         } catch (Exception e) {
             Log.e(TAG, "Error in simpanData", e);
-            showToast("Error: " + e.getMessage());
+            showToast("❌ Error: " + e.getMessage());
         }
     }
     
@@ -670,12 +751,26 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
             etBarang.setText("");
             etStok.setText("");
             etHarga.setText("");
+            if (etKategori != null) {
+                etKategori.setText("");
+            }
             etBarang.requestFocus();
             
             exitUpdateMode();
             
         } catch (Exception e) {
             Log.e(TAG, "Error clearing form", e);
+        }
+    }
+    
+    public void batalData(View v) {
+        try {
+            Log.d(TAG, "batalData called");
+            clearForm();
+            showToast("📝 Form dikosongkan");
+        } catch (Exception e) {
+            Log.e(TAG, "Error in batalData", e);
+            showToast("❌ Error clearing form");
         }
     }
     
@@ -912,6 +1007,52 @@ public class MainActivity extends AppCompatActivity implements BarangAdapter.OnI
         } catch (Exception e) {
             Log.e(TAG, "Error in onBackPressed", e);
             super.onBackPressed();
+        }
+    }
+    
+    /**
+     * Update statistics display in the overview card
+     */
+    private void updateStatistics() {
+        try {
+            if (dataBarang == null || dataBarang.isEmpty()) {
+                // Set zero stats if no data
+                if (tvTotalItems != null) tvTotalItems.setText("0");
+                if (tvLowStockCount != null) tvLowStockCount.setText("0");
+                return;
+            }
+            
+            int totalItems = dataBarang.size();
+            int lowStockCount = 0;
+            
+            // Count items with low stock (less than 10)
+            for (Barang item : dataBarang) {
+                try {
+                    int stock = Integer.parseInt(item.getStok());
+                    if (stock < 10) {
+                        lowStockCount++;
+                    }
+                } catch (NumberFormatException e) {
+                    // Skip items with invalid stock numbers
+                }
+            }
+            
+            // Update UI
+            if (tvTotalItems != null) {
+                tvTotalItems.setText(String.valueOf(totalItems));
+            }
+            
+            if (tvLowStockCount != null) {
+                tvLowStockCount.setText(String.valueOf(lowStockCount));
+            }
+            
+            Log.d(TAG, "Statistics updated: Total=" + totalItems + ", LowStock=" + lowStockCount);
+            
+        } catch (Exception e) {
+            Log.e(TAG, "Error updating statistics", e);
+            // Set fallback values
+            if (tvTotalItems != null) tvTotalItems.setText("--");
+            if (tvLowStockCount != null) tvLowStockCount.setText("--");
         }
     }
 }
